@@ -1,0 +1,38 @@
+[package]
+name = "benches"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "everscale-network-adnl"
+path = "src/everscale_network_adnl.rs"
+
+[[bin]]
+name = "ton-labs-adnl"
+path = "src/ton_labs_adnl.rs"
+
+[dependencies]
+# Shared deps
+async-trait = "0.1"
+futures-util = "0.3"
+rand = "0.8"
+tokio = { version = "1", features = ["full"] }
+
+# Broxus deps
+anyhow = { version = "1.0", optional = true }
+everscale-network = { version = "0.4", optional = true }
+everscale-crypto = { version = "0.1", optional = true }
+tl-proto = { version = "0.3", optional = true }
+
+# Tonlabs deps
+ton_api = { git = "https://github.com/tonlabs/ton-labs-tl.git", tag = '0.2.168', default-features = false, optional = true }
+failure = { version = "0.1", optional = true }
+adnl = { git = "https://github.com/tonlabs/ton-labs-adnl.git", default-features = false, features = [
+    "node",
+], optional = true }
+
+[features]
+default = []
+# Use separate features to prevent `zeroize` erros
+broxus = ["dep:everscale-network", "dep:everscale-crypto", "dep:tl-proto", "dep:anyhow"]
+tonlabs = ["dep:adnl", "dep:ton_api", "dep:failure"]
