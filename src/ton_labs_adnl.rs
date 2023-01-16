@@ -64,7 +64,7 @@ async fn main() -> Result<()> {
         let peers = peers.clone();
         handles.push(tokio::spawn(async move {
             let e = loop {
-                match left_node.clone().query(&query, &peers, Some(2)).await {
+                match left_node.clone().query(&query, &peers, None).await {
                     Ok(Some(data)) => {
                         if data.downcast::<ton_api::ton::ton_node::DataFull>().is_err() {
                             break failure::err_msg("invalid response");

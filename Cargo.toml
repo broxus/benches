@@ -11,6 +11,9 @@ path = "src/everscale_network_adnl.rs"
 name = "ton-labs-adnl"
 path = "src/ton_labs_adnl.rs"
 
+[profile.release]
+debug = true
+
 [dependencies]
 # Shared deps
 async-trait = "0.1"
