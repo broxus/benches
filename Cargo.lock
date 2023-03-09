@@ -24,8 +24,8 @@ source = "git+https://github.com/tonlabs/ton-labs-adnl.git#077b722ea15b112baf917
 dependencies = [
  "aes-ctr",
  "async-trait",
- "base64",
- "curve25519-dalek",
+ "base64 0.13.1",
+ "curve25519-dalek 3.2.1",
  "ever-crypto",
  "external-ip",
  "failure",
@@ -42,9 +42,9 @@ dependencies = [
  "tokio-io-timeout",
  "tokio-stream",
  "ton_api",
- "ton_types",
+ "ton_types 1.12.6",
  "x25519-dalek",
- "zstd",
+ "zstd 0.11.2+zstd.1.5.2",
 ]
 
 [[package]]
@@ -88,6 +88,18 @@ checksum = "ea2e11f5e94c2f7d386164cc2aa1f97823fed6f259e486940a71c174dd01b0ce"
 dependencies = [
  "cipher 0.2.5",
  "opaque-debug",
+]
+
+[[package]]
+name = "ahash"
+version = "0.8.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2c99f64d1e06488f620f932677e24bc6e2897582980441ae90a671415bd7ec2f"
+dependencies = [
+ "cfg-if",
+ "getrandom 0.2.8",
+ "once_cell",
+ "version_check",
 ]
 
 [[package]]
@@ -147,20 +159,28 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9e1b586273c5702936fe7b7d6896644d8be71e6314cfe09d3167c95f712589e8"
 
 [[package]]
+name = "base64"
+version = "0.21.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a4a4ddaa51a5bc52a6948f74c06d20aaaddb71924eab79b8c97a8c556e942d6a"
+
+[[package]]
 name = "benches"
 version = "0.1.0"
 dependencies = [
  "adnl",
  "anyhow",
  "async-trait",
- "everscale-crypto",
+ "everscale-crypto 0.1.4",
  "everscale-network",
+ "everscale-types",
  "failure",
  "futures-util",
  "rand 0.8.5",
- "tl-proto",
+ "tl-proto 0.4.1",
  "tokio",
  "ton_api",
+ "ton_types 1.12.7",
 ]
 
 [[package]]
@@ -349,6 +369,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "curve25519-dalek"
+version = "4.0.0-rc.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8d4ba9852b42210c7538b75484f9daa0655e9a3ac04f693747bb0f02cf3cfe16"
+dependencies = [
+ "cfg-if",
+ "fiat-crypto",
+ "packed_simd_2",
+ "platforms",
+ "subtle",
+ "zeroize",
+]
+
+[[package]]
 name = "curve25519-dalek-ng"
 version = "4.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -414,7 +448,7 @@ version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c762bae6dcaf24c4c84667b8579785430908723d5c889f469d76a41d59cc7a9d"
 dependencies = [
- "curve25519-dalek",
+ "curve25519-dalek 3.2.1",
  "ed25519",
  "rand 0.7.3",
  "serde",
@@ -441,8 +475,8 @@ source = "git+https://github.com/tonlabs/ever-labs-crypto.git?tag=0.1.81#9d7e738
 dependencies = [
  "aes-ctr",
  "async-trait",
- "base64",
- "curve25519-dalek",
+ "base64 0.13.1",
+ "curve25519-dalek 3.2.1",
  "ed25519",
  "ed25519-dalek",
  "failure",
@@ -452,7 +486,7 @@ dependencies = [
  "sha2 0.9.9",
  "tokio",
  "ton_api",
- "ton_types",
+ "ton_types 1.12.6",
  "x25519-dalek",
 ]
 
@@ -467,23 +501,38 @@ dependencies = [
  "hex",
  "rand 0.8.5",
  "sha2 0.9.9",
- "tl-proto",
+ "tl-proto 0.3.14",
+]
+
+[[package]]
+name = "everscale-crypto"
+version = "0.2.0-pre.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b9e4c46126b20660de43b818089bb137032c2c247c271a53ef65525046c4a8b2"
+dependencies = [
+ "curve25519-dalek 4.0.0-rc.1",
+ "generic-array",
+ "hex",
+ "rand 0.8.5",
+ "sha2 0.10.6",
+ "tl-proto 0.4.1",
 ]
 
 [[package]]
 name = "everscale-network"
-version = "0.4.0"
+version = "0.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e97d0fdf035517afa6de2119dadfa3269b4c05c34bf92d06ac9e0d1967531faa"
+checksum = "87a6893a8a89c1831398838e73755aff9613be48dc6c5f2f07b51d10b1b41086"
 dependencies = [
  "aes",
+ "ahash",
  "anyhow",
  "async-trait",
  "bytes",
  "crossbeam-queue",
  "ctr 0.9.2",
  "dashmap",
- "everscale-crypto",
+ "everscale-crypto 0.2.0-pre.1",
  "everscale-raptorq",
  "frunk_core",
  "futures-util",
@@ -493,16 +542,15 @@ dependencies = [
  "once_cell",
  "parking_lot 0.12.1",
  "rand 0.8.5",
- "rustc-hash",
  "serde",
- "sha2 0.9.9",
+ "sha2 0.10.6",
  "smallvec",
  "thiserror",
- "tl-proto",
+ "tl-proto 0.4.1",
  "tokio",
  "tokio-util",
  "tracing",
- "zstd",
+ "zstd 0.12.3+zstd.1.5.2",
 ]
 
 [[package]]
@@ -510,6 +558,34 @@ name = "everscale-raptorq"
 version = "1.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "719e7eca52068b4712789379ef850e5c08b3316bccab5be12d1cb9fcb323a57c"
+
+[[package]]
+name = "everscale-types"
+version = "0.1.0-pre.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b538ad061338a59589c4500c3b980766e2750a0d24c50c48f334d778bcbe1ed4"
+dependencies = [
+ "ahash",
+ "base64 0.21.0",
+ "everscale-types-proc",
+ "hex",
+ "once_cell",
+ "serde",
+ "sha2 0.10.6",
+ "smallvec",
+ "thiserror",
+]
+
+[[package]]
+name = "everscale-types-proc"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9530c8b1a542218cc5049556ea37af94518cc2d48fba38ee61b13f91f17bdbe2"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
 
 [[package]]
 name = "external-ip"
@@ -563,6 +639,12 @@ checksum = "a7a407cfaa3385c4ae6b23e84623d48c2798d06e3e6a1878f7f59f17b3f86499"
 dependencies = [
  "instant",
 ]
+
+[[package]]
+name = "fiat-crypto"
+version = "0.1.19"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "93ace6ec7cc19c8ed33a32eaa9ea692d7faea05006b5356b9e2b668ec4bc3955"
 
 [[package]]
 name = "fnv"
@@ -933,6 +1015,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "201de327520df007757c1f0adce6e827fe8562fbc28bfd9c15571c66ca1f5f79"
 
 [[package]]
+name = "libm"
+version = "0.1.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7fc7aa29613bd6a620df431842069224d8bc9011086b1db4c0e0cd47fa03ec9a"
+
+[[package]]
 name = "linked-hash-map"
 version = "0.5.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1210,6 +1298,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "30fceb411f9a12ff9222c5f824026be368ff15dc2f13468d850c7d3f502205d6"
 
 [[package]]
+name = "packed_simd_2"
+version = "0.3.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a1914cd452d8fccd6f9db48147b29fd4ae05bea9dc5d9ad578509f72415de282"
+dependencies = [
+ "cfg-if",
+ "libm",
+]
+
+[[package]]
 name = "parking_lot"
 version = "0.11.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1344,6 +1442,12 @@ name = "pkg-config"
 version = "0.3.26"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6ac9a59f73473f1b8d852421e59e64809f025994837ef743615c6d0c5b305160"
+
+[[package]]
+name = "platforms"
+version = "3.0.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e3d7ddaed09e0eb771a79ab0fd64609ba0afb0a8366421957936ad14cbd13630"
 
 [[package]]
 name = "pom"
@@ -1757,7 +1861,21 @@ dependencies = [
  "sha2 0.9.9",
  "smallvec",
  "thiserror",
- "tl-proto-proc",
+ "tl-proto-proc 0.3.14",
+]
+
+[[package]]
+name = "tl-proto"
+version = "0.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "24b84a0eff9058f8d970baa2724fd3e6e965d40ea0214a51ba284b19e309aa75"
+dependencies = [
+ "bytes",
+ "digest 0.10.6",
+ "sha2 0.10.6",
+ "smallvec",
+ "thiserror",
+ "tl-proto-proc 0.4.1",
 ]
 
 [[package]]
@@ -1765,6 +1883,19 @@ name = "tl-proto-proc"
 version = "0.3.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "176b886ed0f023d65a0c29332851fb42978524c06b5dc79a3e1c0abcfdd7f458"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "rustc-hash",
+ "syn",
+ "tl-scheme",
+]
+
+[[package]]
+name = "tl-proto-proc"
+version = "0.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5abcdfb6846667a980a20deff2c73de595435c3551b5622534c78eeb441cbf02"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1878,7 +2009,7 @@ dependencies = [
  "serde_json",
  "ton_block",
  "ton_tl_codegen",
- "ton_types",
+ "ton_types 1.12.6",
 ]
 
 [[package]]
@@ -1886,7 +2017,7 @@ name = "ton_block"
 version = "1.9.19"
 source = "git+https://github.com/tonlabs/ton-labs-block.git?tag=1.9.19#0b49a87f2458a31df7061f963831ce3aee4093b4"
 dependencies = [
- "base64",
+ "base64 0.13.1",
  "crc 3.0.0",
  "ed25519",
  "ed25519-dalek",
@@ -1896,7 +2027,7 @@ dependencies = [
  "num",
  "num-traits",
  "sha2 0.10.6",
- "ton_types",
+ "ton_types 1.12.6",
 ]
 
 [[package]]
@@ -1919,7 +2050,27 @@ name = "ton_types"
 version = "1.12.6"
 source = "git+https://github.com/tonlabs/ton-labs-types.git?tag=1.12.6#8e218813db6bacc138dbbec7ab4ccbf84220da31"
 dependencies = [
- "base64",
+ "base64 0.13.1",
+ "crc 1.8.1",
+ "failure",
+ "hex",
+ "lazy_static",
+ "lockfree",
+ "log",
+ "num",
+ "num-derive",
+ "num-traits",
+ "rand 0.8.5",
+ "sha2 0.9.9",
+ "smallvec",
+]
+
+[[package]]
+name = "ton_types"
+version = "1.12.7"
+source = "git+https://github.com/tonlabs/ton-labs-types.git?tag=1.12.7#d54c71302d899959fb944a73999d225917a0f769"
+dependencies = [
+ "base64 0.13.1",
  "crc 1.8.1",
  "failure",
  "hex",
@@ -2214,7 +2365,7 @@ version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2392b6b94a576b4e2bf3c5b2757d63f10ada8020a2e4d08ac849ebcf6ea8e077"
 dependencies = [
- "curve25519-dalek",
+ "curve25519-dalek 3.2.1",
  "rand_core 0.5.1",
  "zeroize",
 ]
@@ -2261,7 +2412,16 @@ version = "0.11.2+zstd.1.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "20cc960326ece64f010d2d2107537f26dc589a6573a316bd5b1dba685fa5fde4"
 dependencies = [
- "zstd-safe",
+ "zstd-safe 5.0.2+zstd.1.5.2",
+]
+
+[[package]]
+name = "zstd"
+version = "0.12.3+zstd.1.5.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "76eea132fb024e0e13fd9c2f5d5d595d8a967aa72382ac2f9d39fcc95afd0806"
+dependencies = [
+ "zstd-safe 6.0.4+zstd.1.5.4",
 ]
 
 [[package]]
@@ -2275,10 +2435,20 @@ dependencies = [
 ]
 
 [[package]]
-name = "zstd-sys"
-version = "2.0.5+zstd.1.5.2"
+name = "zstd-safe"
+version = "6.0.4+zstd.1.5.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "edc50ffce891ad571e9f9afe5039c4837bede781ac4bb13052ed7ae695518596"
+checksum = "7afb4b54b8910cf5447638cb54bf4e8a65cbedd783af98b98c62ffe91f185543"
+dependencies = [
+ "libc",
+ "zstd-sys",
+]
+
+[[package]]
+name = "zstd-sys"
+version = "2.0.7+zstd.1.5.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "94509c3ba2fe55294d752b79842c530ccfab760192521df74a081a78d2b3c7f5"
 dependencies = [
  "cc",
  "libc",
