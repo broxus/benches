@@ -19,8 +19,8 @@ checksum = "f26201604c87b1e01bd3d98f8d5d9a8fcbb815e8cedb41ffccbeb4bf593a35fe"
 
 [[package]]
 name = "adnl"
-version = "0.7.121"
-source = "git+https://github.com/tonlabs/ton-labs-adnl.git#077b722ea15b112baf917602d86a65ed6fdf1526"
+version = "0.7.138"
+source = "git+https://github.com/tonlabs/ever-adnl.git?tag=0.7.138#9c0a72f39d592065aadccfa35c926db3dac54b58"
 dependencies = [
  "aes-ctr",
  "async-trait",
@@ -42,7 +42,7 @@ dependencies = [
  "tokio-io-timeout",
  "tokio-stream",
  "ton_api",
- "ton_types 1.12.6",
+ "ton_types",
  "x25519-dalek",
  "zstd 0.11.2+zstd.1.5.2",
 ]
@@ -171,6 +171,7 @@ dependencies = [
  "adnl",
  "anyhow",
  "async-trait",
+ "base64 0.13.1",
  "everscale-crypto 0.1.4",
  "everscale-network",
  "everscale-types",
@@ -180,7 +181,8 @@ dependencies = [
  "tl-proto 0.4.1",
  "tokio",
  "ton_api",
- "ton_types 1.12.7",
+ "ton_block",
+ "ton_types",
 ]
 
 [[package]]
@@ -470,8 +472,8 @@ dependencies = [
 
 [[package]]
 name = "ever-crypto"
-version = "0.1.81"
-source = "git+https://github.com/tonlabs/ever-labs-crypto.git?tag=0.1.81#9d7e73822531031eeb86460daa30f67b7e8d63b7"
+version = "0.1.96"
+source = "git+https://github.com/tonlabs/ever-crypto.git?tag=0.1.96#b18534487bd02dcd5524e017ecad53e97257c410"
 dependencies = [
  "aes-ctr",
  "async-trait",
@@ -486,7 +488,7 @@ dependencies = [
  "sha2 0.9.9",
  "tokio",
  "ton_api",
- "ton_types 1.12.6",
+ "ton_types",
  "x25519-dalek",
 ]
 
@@ -1994,8 +1996,8 @@ dependencies = [
 
 [[package]]
 name = "ton_api"
-version = "0.2.168"
-source = "git+https://github.com/tonlabs/ton-labs-tl.git?tag=0.2.168#9390e96f7a4dd3ef040af4b85257fde5b0b88e79"
+version = "0.2.183"
+source = "git+https://github.com/tonlabs/ever-tl.git?tag=0.2.183#fd8d1c8eb84f5576416cabce6bb2c122c9604fdd"
 dependencies = [
  "byteorder",
  "extfmt",
@@ -2009,13 +2011,13 @@ dependencies = [
  "serde_json",
  "ton_block",
  "ton_tl_codegen",
- "ton_types 1.12.6",
+ "ton_types",
 ]
 
 [[package]]
 name = "ton_block"
-version = "1.9.19"
-source = "git+https://github.com/tonlabs/ton-labs-block.git?tag=1.9.19#0b49a87f2458a31df7061f963831ce3aee4093b4"
+version = "1.9.35"
+source = "git+https://github.com/tonlabs/ever-block.git?tag=1.9.35#3ce65a41fd703eb66048e8337806c4bdd4dcbbdf"
 dependencies = [
  "base64 0.13.1",
  "crc 3.0.0",
@@ -2027,13 +2029,13 @@ dependencies = [
  "num",
  "num-traits",
  "sha2 0.10.6",
- "ton_types 1.12.6",
+ "ton_types",
 ]
 
 [[package]]
 name = "ton_tl_codegen"
 version = "0.0.2"
-source = "git+https://github.com/tonlabs/ton-labs-tl.git?tag=0.2.168#9390e96f7a4dd3ef040af4b85257fde5b0b88e79"
+source = "git+https://github.com/tonlabs/ever-tl.git?tag=0.2.183#fd8d1c8eb84f5576416cabce6bb2c122c9604fdd"
 dependencies = [
  "crc 1.8.1",
  "failure",
@@ -2047,28 +2049,8 @@ dependencies = [
 
 [[package]]
 name = "ton_types"
-version = "1.12.6"
-source = "git+https://github.com/tonlabs/ton-labs-types.git?tag=1.12.6#8e218813db6bacc138dbbec7ab4ccbf84220da31"
-dependencies = [
- "base64 0.13.1",
- "crc 1.8.1",
- "failure",
- "hex",
- "lazy_static",
- "lockfree",
- "log",
- "num",
- "num-derive",
- "num-traits",
- "rand 0.8.5",
- "sha2 0.9.9",
- "smallvec",
-]
-
-[[package]]
-name = "ton_types"
 version = "1.12.7"
-source = "git+https://github.com/tonlabs/ton-labs-types.git?tag=1.12.7#d54c71302d899959fb944a73999d225917a0f769"
+source = "git+https://github.com/tonlabs/ever-types.git?tag=1.12.7#d54c71302d899959fb944a73999d225917a0f769"
 dependencies = [
  "base64 0.13.1",
  "crc 1.8.1",
